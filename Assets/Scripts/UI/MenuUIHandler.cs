@@ -1,6 +1,9 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+#if UNITY_EDITOR
+using UnityEditor;
+#endif
 
 public class MenuUIHandler : MonoBehaviour
 {
@@ -15,14 +18,11 @@ public class MenuUIHandler : MonoBehaviour
         SetPlayerName();
         UnityEngine.SceneManagement.SceneManager.LoadScene(1);
     }
-    void Start()
-    {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-
+    public void ExitGame(){
+        #if UNITY_EDITOR
+        UnityEditor.EditorApplication.ExitPlaymode();
+        #else
+        Application.Quit();
+        #endif
     }
 }
